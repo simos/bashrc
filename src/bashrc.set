@@ -35,39 +35,33 @@ PS1="\n\e[1m\u\e[m@\e[4m\h\e[m \e[7m\w\e[m\n\$ "
 # Prompt used when waiting for stufffor 'for' or 'while'...
 PS2="> "
 
-# Prompt used when correcting.
-# Correct????
-# 	y: yes, n: no, e: edit
-# 	<SPACE>: yes
-# 	<ENTER>: no
-set prompt3="CORRECT> %B%R%b (y|n|e)?"
-
 # Don't beep at all...
 # beeping is annoying, perhaps it is good only when you learn Bash.
 # If you are a rookie in Bash, try commenting it out.
-set nobeep
+###set nobeep
 
 # This is the history of each individual shell.
 # It defines only the size and it usefull when invoking previous commands.
-set history=2048
+export HISTSIZE=2048
 
 # Make sure that there is no logging of the session.
-# Privacy issues and it was mentioned that logging makes slow the logout
-unset histfile
+# Privacy issues and it was mentioned that logging makes slow the logout.
+unset HISTFILE
 
 # Watch any(1) other users every 0 seconds from any(2) console, 
 # when logging in/out.(I like this one!)
 # It gives something like "root has logged on tty1 from local."
 # You may find it annoying on busy systems (like shell1.sourceforge.net)
-set watch=(0 any any)
+##set watch=(0 any any)
+## NO Equivalent to tcsh ;-(. See http://www.linux.ie/old-list/17375.html
 
 # Format of output string when someone logins or logouts.(Look above)
 # Hmm, can't be internationalised easily.
-set who="%n has %a %l from %M."
+## set who="%n has %a %l from %M."
 
 # Set to 'insert' mode. Possible values 'insert' or 'overwrite'.
 # By default, we are in "insert" mode.
-set inputmode=insert
+##set inputmode=insert
 
 # Do autolisting of commands while completing.
 # Very handy. Example with "chmod". 
