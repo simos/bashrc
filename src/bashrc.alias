@@ -10,56 +10,56 @@
 ## Standard aliases - security
 # "-i" asks for confirmation when deleting. This is good.
 # In the "dangerous" section there are aliases for non-confirmation.
-alias rm 	'rm -v -i'
-alias cp 	'cp -v -i'
-alias mv 	'mv -v -i'
+alias rm='rm -v -i'
+alias cp='cp -v -i'
+alias mv='mv -v -i'
 
 ## Standard aliases - CPM/MSDOS heritage
-alias del   	'rm -v -i'
-alias cls   	'clear'
+alias del='rm -v -i'
+alias cls='clear'
 # "-p" lets you create a path structure with one command, ex. mkdir -p /a/b/c
-alias md    	'mkdir -v -p'
-alias rd    	'rmdir -v'
+alias md='mkdir -v -p'
+alias rd='rmdir -v'
 
 ## Standard aliases - convenience
 # Color syntax
-alias ls 	'ls --color'
+alias ls='ls --color'
 # Typicaly "more" does not allow you to use the arrow keys/etc for navigation.
 # Thus, we try to use "less", if it exists. Some distros do not put the
 # fileutils package and it is annoying if the alias exists without the app.
-if ( -e `where less` ) then
-	alias more 	'less'
-endif
+if [ -e `where less` ]; then
+	alias more='less'
+fi
 # To be used as in "cp /etc/inetd.conf /etc/inetd.conf.`today`"
-alias today 	"date '+%d%h%y'"
+alias today="date '+%d%h%y'"
 # As in "Message Less", use it on a free terminal to see the logs as they come.
-alias mess 	'clear ; tail -f /var/log/messages'
+alias mess='clear ; tail -f /var/log/messages'
 # The following was removed because standard installations of Linux do not
 # install "vi-enhanced" by default. This lead to the situtation that
 # "vi" was not working even though it was there...
 # Plain "vi" does not support syntax highlighting and other tricks. 
 # We check if vim is installed, then set. Sorry non-vim users.
-if ( -e `where vim`) then
-	alias vi 	'vim'
-endif
+if [ -e `where vim`]; then
+	alias vi='vim'
+fi
 # Pressing "x" and enter exits.
-alias x     	'exit'
+alias x='exit'
 # Quite handy, type "ff test.c" to find "test.c". 
 # Keep in mind that there is also "locate test.c" which is faster.
-alias ff    	'find . -name $*'
+alias ff='find . -name $*'
 # Alias for "." and ".."
 # Shows current directory
-alias . 	'pwd'
+alias .='pwd'
 # Goes back one directory
-alias .. 	'cd ..'
-alias ../	'cd ../'
+alias ..='cd ..'
+alias ../='cd ../'
 # Goes back two directories
-alias ... 	'cd ../..'
-alias .../	'cd ../../'
+alias ...='cd ../..'
+alias .../='cd ../../'
 # Goes to previous directory
-alias -		'cd -'
+alias -='cd -'
 # Goes to the root directory
-alias /		'cd /'
+alias /='cd /'
 
 # The following are not generic enough. Disabled for the moment.
 #alias vt    	'tar tvf'
@@ -71,10 +71,10 @@ alias /		'cd /'
 ## Standard aliases - for typos
 # These are the most common typos made by users, even experienced ones.
 # Send me yours.
-alias maek  'make'
-alias alais 'alias'
-alias csl   'clear'
-alias sl    'ls --color'
+alias maek='make'
+alias alais='alias'
+alias csl='clear'
+alias sl='ls --color'
 
 ## Aliases specific to Bash
 # What is the help command? Type "ls" and hit F1. Will show a help line.
@@ -82,7 +82,7 @@ alias sl    'ls --color'
 # Once you read the help, press "q" to quit and you can continue editing the
 # line.
 #alias helpcommand whatis
-alias helpcommand man
+###alias helpcommand man
 
 ############# WATCH OUT THIS ONE #############################
 # This is handy but dangerous!
@@ -99,39 +99,39 @@ alias helpcommand man
 # -n  means do not resolve names. Makes it faster and lightweight.
 # -i eth0  means only the Ethernet interface. In some distros, the loopback is
 # shown too which clutters the output.
-alias log_tcpdump 'clear ; exec tcpdump -s 2000 -n -i eth0'
+###alias log_tcpdump 'clear ; exec tcpdump -s 2000 -n -i eth0'
 
 # This is a console lock. -a means that the user cannot switch consoles,
 # needs to unlock this console to continue. Before using this, check that
 # the SysRq linux kernel combination is disabled. If not, users may be able to 
 # to kill the "vlock" process and access the other terminals.
-alias log_lock 'clear; exec vlock -a'
+######alias log_lock 'clear; exec vlock -a'
 
 # Put the following on a free console and leave it there.
 # Even when the logs are circulating, it will carry on.
 # If someone kills this process, it automatically exits due to the "exec".
-alias log_messages 'clear; exec tail -f /var/log/messages --follow=name --retry'
+########alias log_messages 'clear; exec tail -f /var/log/messages --follow=name --retry'
 
 # This creates a PostScript file out of a .txt one, in a economic way.
 # the output file is "output.ps" in all cases (carefull with overwrites..)
 # You need the "enscript" package installed.
 # It sets Duplex mode, prints in landscape two pages on each side of the
 # paper.
-alias enscriptit 'enscript -o output.ps -DDuplex:true -DTumble:true -r -M A4 -2'
+######alias enscriptit 'enscript -o output.ps -DDuplex:true -DTumble:true -r -M A4 -2'
 
 # If you are on Sourceforge, this may be handy. Also try RSA authentication
 # so that you do not need to put a password to connect. It is also handy with
 # "scp".
 # You can run it as "shell1 -l my_username" without modifying the following.
-alias shell1 'slogin -x shell1.sourceforge.net -l CHANGE_WITH_YOUR_USERNAME_IN_.bashrc.alias'
+###########alias shell1 'slogin -x shell1.sourceforge.net -l CHANGE_WITH_YOUR_USERNAME_IN_.bashrc.alias'
 
 # This is another way to get RFCs nicely. Just do "rfcget 1234" 
 # to get the appropriate RFC. Needs the ncftp package.
-alias rfcget 'ncftpget ftp://ftp.isi.edu/in-notes/rfc\!^.txt' 
+##########alias rfcget 'ncftpget ftp://ftp.isi.edu/in-notes/rfc\!^.txt' 
 
 # This erases the backup files from emacs, vi (if enabled) and others.
 # It is disabled by default.
 #alias clean 'rm -f  *~'
 # This is useful to translators checking .po files.
-alias msgcheck 'msgfmt -o /dev/null --statistics --strict --verbose'
+##########alias msgcheck 'msgfmt -o /dev/null --statistics --strict --verbose'
 
