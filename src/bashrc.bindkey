@@ -4,7 +4,7 @@
 ##
 ## Author: Simos Xenitellis (simos.lists@googlemail.com)
 ##
-## This is the .bashrc.bindkey file, part of the TCSHRC project
+## This is the .bashrc.bindkey file, part of the BASHRC project
 ## at http://bashrc.sourceforge.net
 
 #  One can use the "bindkey" facility to redefine the meaning of 
@@ -95,7 +95,7 @@ switch ( $OSTYPE )
 	bindkey -s ^[[21~  "\16ls -l\n"
 
 	# F11 : display load average and current process status.
-	# Does not work on Linux. Perhaps bug in tcsh?
+	# Does not work on Linux. Perhaps bug in bash?
 	# Changed with running "uptime".
 	### bindkey    ^[[23~  load-average 
 #	bindkey -s   ^[[23~  "\16uptime\n"

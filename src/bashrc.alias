@@ -4,7 +4,7 @@
 ##
 ## Author: Simos Xenitellis (simos.lists@googlemail.com)
 ##
-## This is the .bashrc.alias file, part of the TCSHRC project
+## This is the .bashrc.alias file, part of the BASHRC project
 ## at http://bashrc.sourceforge.net
 
 ## Standard aliases - security
@@ -76,7 +76,7 @@ alias alais 'alias'
 alias csl   'clear'
 alias sl    'ls --color'
 
-## Aliases specific to TCSH
+## Aliases specific to Bash
 # What is the help command? Type "ls" and hit F1. Will show a help line.
 # From version bashrc-1.x we use the man page facility as the help source.
 # Once you read the help, press "q" to quit and you can continue editing the

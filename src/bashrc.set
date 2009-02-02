@@ -5,7 +5,7 @@
 ## Author: Simos Xenitellis (simos.lists@googlemail.com)
 ##
 
-## This is the .bashrc.set file, part of the TCSHRC project
+## This is the .bashrc.set file, part of the BASHRC project
 ## at http://bashrc.sourceforge.net
 
 ## Has two sections, GENERAL and SYSTEM SPECIFIC
@@ -17,7 +17,7 @@
 #set ignoreeof
 
 # Define new prompt.
-# Basic prompt.      (do a 'man tcsh' to get more about the flags)
+# Basic prompt.      (do a 'man bash' to get more about the flags)
 # This shows the current path in inverse color and that is nice.
 # It is important to know all the time in what directory you are.
 #   explanation: %B begin bold, %b end bold, %S begin inverse, %s end inverse
@@ -43,8 +43,8 @@ PS2="> "
 set prompt3="CORRECT> %B%R%b (y|n|e)?"
 
 # Don't beep at all...
-# beeping is annoying, perhaps it is good only when you learn TCSH.
-# If you are a rookie in TCSH, try commenting it out.
+# beeping is annoying, perhaps it is good only when you learn Bash.
+# If you are a rookie in Bash, try commenting it out.
 set nobeep
 
 # This is the history of each individual shell.
@@ -76,7 +76,7 @@ set inputmode=insert
 #  % chm<TAB>
 #  we have seen that there is only one chm* command. Thus, the <TAB> does:
 #  % chmod 
-#  This is among best tricks of TCSH. Learn this and you will be very fast
+#  This is among best tricks of Bash. Learn this and you will be very fast
 #  on the command line.
 set autolist
 
@@ -88,11 +88,11 @@ set autolist
 set autocorrect
 
 # Use the history of commands to aid expansion.
-# Found in new versions of tcsh (at least 6.10)
+# Found in new versions of bash (at least 6.10)
 set autoexpand
 
 # Enabled "complete" to "enhance".
-# If you have a file called "complete.tcsh" and you
+# If you have a file called "complete.bash" and you
 # want to edit it, do "vi c.t<TAB>" and that's it.
 set complete=enhance
 
@@ -134,7 +134,7 @@ set fignore=(.o)
 
 #set time="%Uu %Ss %E %P %X+%Dk %I+%Oio %Fpf+%Ww"
 
-# Do "man tcsh" to find about more data that can be shown
+# Do "man bash" to find about more data that can be shown
 # with this command. I have used only those that are available
 # on a Linux box without kernel debugging enabled.
 # That is, a stock kernel from a distribution.
