@@ -16,26 +16,28 @@
 # Thanks to Spencer White <spencer@nexthost.com> for "if root" condition
 
 #         "root" environment (basic)
-if ($LOGNAME == "root") then
-	set -f path = ( $path /sbin )
-	set -f path = ( $path /usr/sbin )
-	set -l path = ( $path /usr/local/sbin )
-endif
+##if ($LOGNAME == "root") then
+##	set -f path = ( $path /sbin )
+##	set -f path = ( $path /usr/sbin )
+##	set -l path = ( $path /usr/local/sbin )
+##endif
 
 #         "user" + "root" environment (basic)
-set -f path = ( $path /bin )
-set -f path = ( $path /usr/bin )
-set -l path = ( $path /usr/local/bin )
+##set -f path = ( $path /bin )
+##set -f path = ( $path /usr/bin )
+##set -l path = ( $path /usr/local/bin )
 
 #         "user" + "root" environment (misc)
-set -l path = ( $path /usr/local/ssl/bin )
-set -l path = ( $path /usr/local/samba/bin )
-set -l path = ( $path /usr/local/java/bin )
-set -l path = ( $path /usr/games )
+##set -l path = ( $path /usr/local/ssl/bin )
+##set -l path = ( $path /usr/local/samba/bin )
+##set -l path = ( $path /usr/local/java/bin )
+##set -l path = ( $path /usr/games )
 
 ########################################################################
 #         skip remaining setup if not an interactive shell
-if ($?USER == 0 || $?prompt == 0) exit
+if [ -z "$PS1" ]; then
+	exit
+fi
 
 #        settings  for interactive shells
 source $HOME/.bashrc.set
