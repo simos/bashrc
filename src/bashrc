@@ -35,8 +35,9 @@
 
 ########################################################################
 #         skip remaining setup if not an interactive shell
+#[ -z "$PS1" ] && return
 if [ -z "$PS1" ]; then
-	exit
+	return
 fi
 
 #        settings  for interactive shells
