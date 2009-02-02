@@ -1,0 +1,59 @@
+#############################################################################
+##
+## .bashrc
+##
+## Author: Simos Xenitellis (simos.lists@googlemail.com)
+##
+
+## This is the basic new .bashrc file, part of the TCSHRC project
+## at http://bashrc.sourceforge.net
+
+#         basic settings for interactive and non-interactive shells
+# Thanks to Heather Downs <heather@netlens.com> for the "set -f -l" flags
+# "set -f" adds a variable in _front of the list, keep one copy
+# "set -l" adds a variable at the end(_last) of the list, keep one copy
+#    paths with lower priority than system paths like /bin /sbin,,,
+# Thanks to Spencer White <spencer@nexthost.com> for "if root" condition
+
+#         "root" environment (basic)
+if ($LOGNAME == "root") then
+	set -f path = ( $path /sbin )
+	set -f path = ( $path /usr/sbin )
+	set -l path = ( $path /usr/local/sbin )
+endif
+
+#         "user" + "root" environment (basic)
+set -f path = ( $path /bin )
+set -f path = ( $path /usr/bin )
+set -l path = ( $path /usr/local/bin )
+
+#         "user" + "root" environment (misc)
+set -l path = ( $path /usr/local/ssl/bin )
+set -l path = ( $path /usr/local/samba/bin )
+set -l path = ( $path /usr/local/java/bin )
+set -l path = ( $path /usr/games )
+
+########################################################################
+#         skip remaining setup if not an interactive shell
+if ($?USER == 0 || $?prompt == 0) exit
+
+#        settings  for interactive shells
+source $HOME/.bashrc.set
+
+#        aliases   for interactive shells
+source $HOME/.bashrc.alias
+
+#        bindkeys   for interactive shells
+source $HOME/.bashrc.bindkey
+
+#        completions for interactive shells
+source $HOME/.bashrc.complete
+
+#	local settings
+source $HOME/.bashrc.local
+
+#        commands for interactive shells
+## FIXME this is an example, shows date and current directory
+date
+pwd
+

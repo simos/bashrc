@@ -1,0 +1,32 @@
+This package has a set of configuration files for the Bash (sh) shell.
+It makes heavy use of the nice usability features of Bash.
+
+To use it, you need to be running the Bash shell.
+Check your appropriate line in /etc/passwd to see if you run Bash.
+If not, you may be able to use "chsh" to change your shell to "/bin/bash".
+
+There is a Makefile in the project directory. Type “make” to view 
+the installation options.
+
+  % make 		display this help
+
+  % make backup		take a backup of the original .bashrc
+                        (it is saved as .bashrc.ORIGINAL)
+                        you should run this once in the begining
+                        otherwise you may overwrite the backup
+
+  % make install	install the new .bashrc* files in
+                        the current directory
+
+  % make systeminstall	install the new .bashrc* files in
+                        /usr/local/share/bashrc, then add
+                        bashrc_config to /usr/local/bin/
+
+Now read the FAQ file on the new functionality and how to use it properly.
+
+This project is based on tcshrc, http://www.github.com/simos/tcshrc/
+Some things may not appear complete; bear with us while we port the functionality.
+
+WE DID NOT PORT ALL THE CONFIGURATION FILES TO BASHRC. THINGS ARE EXPECTED NOT TO WORK.
+
+For more information, contact Simos Xenitellis <simos.lists@googlemail.com>

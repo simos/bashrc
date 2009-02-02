@@ -1,0 +1,11 @@
+#############################################################################
+##
+## .bashrc.local
+##
+## Author: Simos Xenitellis (simos.lists@googlemail.com)
+##
+## This is the .bashrc.local file, part of the TCSHRC project
+## at http://bashrc.sourceforge.net
+##
+## Here you add your aliases, sets, completions and bindkeys that you want
+## to override from the default settings.

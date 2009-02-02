@@ -1,0 +1,25 @@
+
+NEW NEW NEW
+
+I have put a "Makefile", type "make" to see the options there.
+Essentially, the Makefile does what the following suggests.
+
+NEW NEW NEW
+
+To install the new .tcshrc.* files, you should first take a backup
+of your original .tcshrc file, if there is any.
+Then, copy the .tcshrc* files from this directory to your home directory.
+
+A. To make a backup of your existing .tcshrc file
+
+% cd
+% cp .tcshrc .tcshrc.ORIGINAL
+
+B. To install the new .tcshrc* files
+
+% cd tcshrc-0.x/
+% cp .tcshrc* ~/
+
+Exit the shell and logon again (or open a new window).
+
+For more information, contact Simos Xenitellis <simos.lists@googlemail.com>

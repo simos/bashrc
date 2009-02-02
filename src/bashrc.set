@@ -1,0 +1,227 @@
+#############################################################################
+##
+## .bashrc.set
+##
+## Author: Simos Xenitellis (simos.lists@googlemail.com)
+##
+
+## This is the .bashrc.set file, part of the TCSHRC project
+## at http://bashrc.sourceforge.net
+
+## Has two sections, GENERAL and SYSTEM SPECIFIC
+
+## GENERAL
+
+# When you press "Ctrl-D", should you exit the shell?
+# If you are used to exit the shell with "Ctrl-D", disable this.
+#set ignoreeof
+
+# Define new prompt.
+# Basic prompt.      (do a 'man tcsh' to get more about the flags)
+# This shows the current path in inverse color and that is nice.
+# It is important to know all the time in what directory you are.
+#   explanation: %B begin bold, %b end bold, %S begin inverse, %s end inverse
+#   explanation: %m short system name, %/ full directory name, %# is # or %
+#   explanation: depending if you are root or non-root.
+
+# New prompt, please try it out. Took me 3 days to get used to it fully.
+# It's better in some respects than the previous one.
+#   - more space to type command.
+#   - shows username@currenthost currentdirectory
+#   - can double-click with mouse to select so latter can paste somewhere
+# Source: "UNIX Power Tools" from O'Reilly, note from Tim Cera (timcera@sourceforge.net).
+PS1="\n\e[1m\u\e[m@\e[4m\h\e[m \e[7m\w\e[m\n\$ "
+
+# Prompt used when waiting for stufffor 'for' or 'while'...
+PS2="> "
+
+# Prompt used when correcting.
+# Correct????
+# 	y: yes, n: no, e: edit
+# 	<SPACE>: yes
+# 	<ENTER>: no
+set prompt3="CORRECT> %B%R%b (y|n|e)?"
+
+# Don't beep at all...
+# beeping is annoying, perhaps it is good only when you learn TCSH.
+# If you are a rookie in TCSH, try commenting it out.
+set nobeep
+
+# This is the history of each individual shell.
+# It defines only the size and it usefull when invoking previous commands.
+set history=2048
+
+# Make sure that there is no logging of the session.
+# Privacy issues and it was mentioned that logging makes slow the logout
+unset histfile
+
+# Watch any(1) other users every 0 seconds from any(2) console, 
+# when logging in/out.(I like this one!)
+# It gives something like "root has logged on tty1 from local."
+# You may find it annoying on busy systems (like shell1.sourceforge.net)
+set watch=(0 any any)
+
+# Format of output string when someone logins or logouts.(Look above)
+# Hmm, can't be internationalised easily.
+set who="%n has %a %l from %M."
+
+# Set to 'insert' mode. Possible values 'insert' or 'overwrite'.
+# By default, we are in "insert" mode.
+set inputmode=insert
+
+# Do autolisting of commands while completing.
+# Very handy. Example with "chmod". 
+#  % ch<TAB>
+#  now it shows all possible commands that start with "ch*".
+#  % chm<TAB>
+#  we have seen that there is only one chm* command. Thus, the <TAB> does:
+#  % chmod 
+#  This is among best tricks of TCSH. Learn this and you will be very fast
+#  on the command line.
+set autolist
+
+# Do autocorrection while completing...
+# It does some very rudimentary corrections. I was not disatisfied yet.
+# Try:
+# % cd /usr/loca/bin<TAB>
+# % cd /usr/local/bin     <- you get
+set autocorrect
+
+# Use the history of commands to aid expansion.
+# Found in new versions of tcsh (at least 6.10)
+set autoexpand
+
+# Enabled "complete" to "enhance".
+# If you have a file called "complete.tcsh" and you
+# want to edit it, do "vi c.t<TAB>" and that's it.
+set complete=enhance
+
+# Possible values : cmd complete all
+# Put it to extreme auto.
+set correct=all
+
+# Don't want to be autologed out.
+# You can set it to autologout you after x minutes of idle time.
+# You would do: set autologout=3  for 3 minutes of inactivity.
+unset autologout
+
+# Symbolic links are expanded to their true values : chase
+# (possible values 'chase' 'ignore' 'expand')
+# When traversing directories with symlinks, this substitures them
+# with the real value. You will like it.
+set symlinks=chase
+
+# After a 'Ctrl-Z', it lists all the jobs.
+set listjobs
+
+# If the exit value is non-zero, print it.
+# Very handy when you do scripting.
+set printexitvalue
+
+# Ask for confirmation when 'rm *'.
+set rmstar
+
+# Set the command to be run instead of a BEEP.(does this one work???)
+#set beepcmd
+
+# Files that are to be ignored from completion.
+# These are the .o files that GCC produces. Usually you do not touch them.
+set fignore=(.o)
+
+# Various statistics.
+# You can unset it or set it (it is set a bit later).
+#unset time
+
+#set time="%Uu %Ss %E %P %X+%Dk %I+%Oio %Fpf+%Ww"
+
+# Do "man tcsh" to find about more data that can be shown
+# with this command. I have used only those that are available
+# on a Linux box without kernel debugging enabled.
+# That is, a stock kernel from a distribution.
+set time=(8 "\
+Time spent in user mode   (CPU seconds) : %Us\
+Time spent in kernel mode (CPU seconds) : %Ss\
+Total time                              : %Es\
+CPU utilisation (percentage)            : %P\
+Times the process was swapped           : %W\
+Times of major page faults              : %F\
+Times of minor page faults              : %R")
+
+# page faults are the "memory" pages that had to be brought
+# from the swap area.
+ 
+# Before printing prompt after a command, do :
+#alias precmd date
+
+# Setting the 'echo_style' parameter to 'both'.
+# Other values are bsd, sysv, etc.
+# This way, both 'set -n' and set '\003' styles will work.
+# On Linux it's already set to 'both.
+# Submission by miklos.
+set echo_style=both
+
+## Addition by Hunter Eidson (eeidson).
+# Execute command after changing directory.
+# This changes the title bar/icon description of the console window.
+setenv SHORT_HOST `echo $HOST | cut -f 1 -d. | tr 'a-z' 'A-Z'`
+switch ( $TERM )
+      case "dtterm*":         # dtterm
+      case "xterm*":          # xterm
+              alias seticon 'echo -n "\033]1;\!*\007"'
+              alias sethead 'echo -n "\033]2;\!*\007"'
+              alias cwdcmd  'sethead "${SHORT_HOST} - ${PWD}"'
+              breaksw;
+      case "sun*":            # SunView cmdtool/shelltool
+              alias seticon 'echo -n "\033]L\!*\033\\"'
+              alias sethead 'echo -n "\033]l\!*\033\\"'
+              alias cwdcmd  'sethead "${SHORT_HOST} - ${PWD}"'
+              breaksw;
+      case "vt[24]20*":       # TNVT and SecureCRT (Windows clients)
+              alias seticon 'echo -n ""'
+              alias sethead 'echo -n "\033]0;\!*\007\033\\"'
+              alias cwdcmd  'sethead "${SHORT_HOST} - ${PWD}"'
+              breaksw;
+      default:
+              alias seticon echo -n ""
+              alias sethead echo -n ""
+              unalias cwdcmd
+endsw
+sethead ${SHORT_HOST} - ${PWD}
+seticon ${SHORT_HOST}
+
+#### Generic command to set the title bar of the console window to
+#### show the hostname and current directory.
+#### We currently use the switch mechanism above to determine the 
+#### correct values for different TERMs.
+# Addition by <miklos.quartus@nokia.com>
+#alias cwdcmd 'echo -n "\033]2;${HOST}\007\033]1;\007"'
+#unalias cwdcmd
+
+# Every # seconds, do 'command'.
+# set tperiod = 2
+# alias periodic 'tput bel'
+
+unset tperiod
+unalias periodic
+
+# After 8 hours, it changes the prompt to the following!
+### sorry for this :)
+#sched +8:00 set prompt='Has trabajado mucho. Llama la novia\! :> '
+
+## SYSTEM SPECIFIC
+
+#setenv PRINTER HP4KN
+#setenv SGML_CATALOG_FILES /usr/lib/sgml/CATALOG
+
+## Language settings 
+# FIXME These should have been set by the system.
+# FIXME Unless you are greek, these will make your computer ill.
+# One should tinker /etc/sysconfig/i18n or similar. Period.
+#setenv LANG 	el_GR
+#setenv LANGUAGE el_GR
+#setenv LC_ALL 	el_GR
+
+set URLS=(http://www.slashdot.org/ http://www.freshmeat.net/ http://www.lwn.net/ http://linuxtoday.com/ http://www.linux.com/ http://www.sourceforge.net/ http://www.redhat.com/ http://www.suse.com/ http://www.debian.org/ http://www.mandrakelinux.com/ http://www.knoppix.org/ http://www.cryptome.org/ http://www.mirror.ac.uk/ http://www.google.com/ http://www.yahoo.com/)
+
+## Version of this package
+set bashrc_version=1.5.0

@@ -1,0 +1,459 @@
+#############################################################################
+##
+## .bashrc.bindkey
+##
+## Author: Simos Xenitellis (simos.lists@googlemail.com)
+##
+## This is the .bashrc.bindkey file, part of the TCSHRC project
+## at http://bashrc.sourceforge.net
+
+#  One can use the "bindkey" facility to redefine the meaning of 
+#  keys on the keyboard. Now you can eventually use those F*** keys.
+#
+
+
+##########################################################################
+##########################################################################
+###########  Add here individual settings for non-Linux systems ##########
+##########################################################################
+##########################################################################
+
+switch ( $OSTYPE )
+      case "linux*":         # Linux
+	# INSERT : toggles overwrite or insert mode.
+	bindkey    ^[[2~  overwrite-mode 
+
+	# DELETE : delete char at cursor position.
+	bindkey    ^[[3~  delete-char
+
+	# HOME : go to the beginning of the line.
+	bindkey    ^[[1~  beginning-of-line
+
+	# END : go to the end of the line.
+	bindkey    ^[[4~  end-of-line
+
+	# PAGE UP : search in history backwards for line beginning as current.
+	bindkey    ^[[5~   history-search-backward
+
+	# PAGE DOWN : search in history forwards for line beginning as current.
+	bindkey    ^[[6~   history-search-forward
+
+	# ESC-left-arrow : go to beginning of left word.        
+	# The second version is used to fix a strange bug where the binding
+	# stops working after some usage. Did not manage to recreate.
+	bindkey    ^[^[[D vi-word-back
+	bindkey	   OD vi-word-back
+
+	# ESC-right-arrow : go to beginning of right word.
+	# The second version is used to fix a strange bug where the binding
+	# stops working after some usage. Did not manage to recreate.
+	bindkey    ^[^[[C vi-word-fwd
+	bindkey	   OC vi-word-fwd
+
+	# F1 : help on command currently typed(if 'ls passwd', help on 'ls').
+	# first: while in console mode, second: while in X
+	bindkey    ^[[[A   run-help
+	bindkey    OP    run-help
+
+	# F2 : set the mark command to cursor position.
+	# first: while in console mode, second: while in X
+	bindkey  ^[[[B    set-mark-command 
+	bindkey  OQ     set-mark-command 
+
+	# F3 : move cursor to the marked position.
+	# first: while in console mode, second: while in X
+	bindkey   ^[[[C   exchange-point-and-mark 
+	bindkey   OR    exchange-point-and-mark 
+
+	# F4 : --empty--
+	# first: while in console mode, second: while in X
+	bindkey   ^[[[D   undefined-key
+	bindkey   OS   undefined-key
+
+	# F5 : check line for spelling and make changes.
+	# first: while in console mode, second: while in X
+	bindkey    ^[[[E   spell-line
+	bindkey    [15~   spell-line
+
+	# F6 : check current word for spelling and make changes.
+	# same in both console and X modes
+	bindkey    ^[[17~  spell-word
+
+	# F7 : insert last item of previous command.
+	bindkey    ^[[18~  insert-last-word
+
+	# F8 : search in history backwards for line beginning as current.
+	bindkey   ^[[19~  history-search-backward
+
+	# F9 : clear screen.
+	# You may be in the middle of a command when you use this.
+	# Does not affect what you are writing at the moment.
+	bindkey    ^[[20~  clear-screen
+
+	# F10 : do an 'ls -l'.    (\16 is Ctrl-U on Linux(and Sun?))
+	# Does not work on some xterm* (gnome-terminal).
+	bindkey -s ^[[21~  "\16ls -l\n"
+
+	# F11 : display load average and current process status.
+	# Does not work on Linux. Perhaps bug in tcsh?
+	# Changed with running "uptime".
+	### bindkey    ^[[23~  load-average 
+#	bindkey -s   ^[[23~  "\16uptime\n"
+#### Disabled! According to users, it is close to F12, which is used for unconditional
+#### completion. In several cases (laptop keyboard) it is common to make a mistake
+#### and press F11 instead of F12, such as in the case
+####        root# cp /etc/passwd /etc/pas<F11>
+#### In this case, the commande changes to
+####        root# cp /etc/passwd /etc/pasuptime<ENTER>
+#### and you get a rubbish file /etc/pasuptime. Annoying!
+
+	# F12 : do a ala-csh completion.
+	bindkey    ^[[24~  complete-word-raw
+
+	#######################################
+	# Advanced settings
+
+	# Thanks to Carlos Duarte <cgd@teleweb.pt>
+	# Eazy edit of path, type Ctrl-X p
+	bindkey -s '^Xp'        '. `echo $path`^X*)^A^Dset path = ( '
+
+	# Ctrl-X *   Expand glob. example: ls *<^X*>  will expand the line
+	# default behaviour
+
+	# Ctrl-X $   Expand variables. example: $TERM<^X$> with give  vt100
+	# default behaviour
+   	breaksw;
+      case "freebsd*":       # FreeBSD, by scott <stock@fishcracker.com>
+      case "FreeBSD*":       # FreeBSD, by scott <stock@fishcracker.com>
+	# INSERT : toggles overwrite or insert mode.
+	bindkey ^[[L overwrite-mode 
+	bindkey    ^[[2~  overwrite-mode	# for x
+
+	# DELETE : delete char at cursor position.
+	bindkey ^? delete-char
+	bindkey    ^[[3~  delete-char		# for x
+
+	# HOME : go to the beginning of the line.
+	# already bound to beginnning-of-line, but the keycode thing was different.
+	bindkey ^[[H beginning-of-line
+
+	# END : go to the end of the line.
+	# same as above.
+	bindkey ^[[F end-of-line
+
+	# PAGE UP : search in history backwards for line beginning as current.
+	bindkey ^[[I history-search-backward
+	bindkey ^[[5~ history-search-backward	# for x
+
+	# PAGE DOWN : search in history forwards for line beginning as current.
+	bindkey ^[[G history-search-forward 
+	bindkey ^[[6~ history-search-forward 	# for x
+
+	# ESC-left-arrow : go to beginning of left word.        
+	# The second version is used to fix a strange bug where the binding
+	# stops working after some usage. Did not manage to recreate.
+	bindkey ^[^[[D vi-word-back          # not freebsd specific
+	bindkey	   OD vi-word-back
+
+	# ESC-right-arrow : go to beginning of right word.
+	# The second version is used to fix a strange bug where the binding
+	# stops working after some usage. Did not manage to recreate.
+	bindkey ^[^[[C vi-word-fwd		# also not freebsd specific
+	bindkey	   OC vi-word-fwd
+
+	# F1 : help on command currently typed(if 'ls passwd', help on 'ls').
+	# first: while in console mode, second: while in X
+	bindkey ^[[M run-help
+	bindkey    OP    run-help
+
+	# F2 : set the mark command to cursor position.
+	# first: while in console mode, second: while in X
+	bindkey ^[[N set-mark-command
+	bindkey  OQ     set-mark-command 
+
+	# F3 : move cursor to the marked position.
+	# first: while in console mode, second: while in X
+	bindkey ^[[O exchange-point-and-mark
+	bindkey   OR    exchange-point-and-mark 
+
+	# F4 : --empty--
+	# first: while in console mode, second: while in X
+	bindkey ^[[P undefined-key
+	bindkey   OS   undefined-key
+
+	# F5 : check line for spelling and make changes.
+	# first: while in console mode, second: while in X
+	bindkey ^[[Q spell-line
+	bindkey    [15~   spell-line
+
+	# F6 : check current word for spelling and make changes.
+	bindkey ^[[R spell-word
+	bindkey ^[[17~ spell-word		# for x
+
+	# F7 : insert last item of previous command.
+	bindkey ^[[S insert-last-word
+	bindkey ^[[18~ insert-last-word		# for x
+
+	# F8 : search in history backwards for line beginning as current.
+	bindkey ^[[T history-search-backward
+	bindkey ^[[19~ history-search-backward	# for x
+
+	# F9 : clear screen.
+	# You may be in the middle of a command when you use this.
+	# Does not affect what you are writing at the moment.
+	bindkey ^[[U clear-screen
+	bindkey ^[[20~ clear-screen		# for x
+
+	# F10 : do an 'ls -l'.    (\16 is Ctrl-U on Linux(and Sun?))
+	bindkey -s ^[[V "^Uls -l\n"
+	bindkey -s ^[[21~  "^Uls -l\n"		# for x
+
+	# F11 : display load average and current process status.
+#	bindkey ^[[W load-average
+#	bindkey ^[[23~ load-average		# for x
+#### Disabled! According to users, it is close to F12, which is used for unconditional
+#### completion. In several cases (laptop keyboard) it is common to make a mistake
+#### and press F11 instead of F12, such as in the case
+####        root# cp /etc/passwd /etc/pas<F11>
+#### In this case, the commande changes to
+####        root# cp /etc/passwd /etc/pasuptime<ENTER>
+#### and you get a rubbish file /etc/pasuptime. Annoying!
+
+	# F12 : do a ala-csh completion.
+	bindkey ^[[X complete-word-raw
+	bindkey ^[[24~ complete-word-raw	# for x
+
+	#######################################
+	# Advanced settings
+
+	# Thanks to Carlos Duarte <cgd@teleweb.pt>
+	# Eazy edit of path, type Ctrl-X p
+	bindkey -s '^Xp'        '. `echo $path`^X*)^A^Dset path = ( '
+
+	# Ctrl-X *   Expand glob. example: ls *<^X*>  will expand the line
+	# default behaviour
+
+	# Ctrl-X $   Expand variables. example: $TERM<^X$> with give  vt100
+	# default behaviour
+	breaksw;
+      case "darwin*":        # OS/X, by Phil Hudson <Philip.Hudson@Sun.COM>
+	# INSERT : toggles overwrite or insert mode.
+	bindkey ^[[L overwrite-mode 
+	bindkey    ^[[2~  overwrite-mode	# for x
+
+	# DELETE : delete char at cursor position.
+	bindkey ^? delete-char
+	bindkey    ^[[3~  delete-char		# for x
+
+	# HOME : go to the beginning of the line.
+	# already bound to beginnning-of-line, but the keycode thing was different.
+	bindkey ^[[H beginning-of-line
+
+	# END : go to the end of the line.
+	# same as above.
+	bindkey ^[[F end-of-line
+
+	# PAGE UP : search in history backwards for line beginning as current.
+	bindkey ^[[I history-search-backward
+	bindkey ^[[5~ history-search-backward	# for x
+
+	# PAGE DOWN : search in history forwards for line beginning as current.
+	bindkey ^[[G history-search-forward 
+	bindkey ^[[6~ history-search-forward 	# for x
+
+	# ESC-left-arrow : go to beginning of left word.        
+	# The second version is used to fix a strange bug where the binding
+	# stops working after some usage. Did not manage to recreate.
+	bindkey ^[^[[D vi-word-back          # not freebsd specific
+	bindkey	   OD vi-word-back
+
+	# ESC-right-arrow : go to beginning of right word.
+	# The second version is used to fix a strange bug where the binding
+	# stops working after some usage. Did not manage to recreate.
+	bindkey ^[^[[C vi-word-fwd		# also not freebsd specific
+	bindkey	   OC vi-word-fwd
+
+	# F1 : help on command currently typed(if 'ls passwd', help on 'ls').
+	# first: while in console mode, second: while in X
+	bindkey ^[[M run-help
+	bindkey    OP    run-help
+
+	# F2 : set the mark command to cursor position.
+	# first: while in console mode, second: while in X
+	bindkey ^[[N set-mark-command
+	bindkey  OQ     set-mark-command 
+
+	# F3 : move cursor to the marked position.
+	# first: while in console mode, second: while in X
+	bindkey ^[[O exchange-point-and-mark
+	bindkey   OR    exchange-point-and-mark 
+
+	# F4 : --empty--
+	# first: while in console mode, second: while in X
+	bindkey ^[[P undefined-key
+	bindkey   OS   undefined-key
+
+	# F5 : check line for spelling and make changes.
+	# first: while in console mode, second: while in X
+	bindkey ^[[Q spell-line
+	bindkey    [15~   spell-line
+
+	# F6 : check current word for spelling and make changes.
+	bindkey ^[[R spell-word
+	bindkey ^[[17~ spell-word		# for x
+
+	# F7 : insert last item of previous command.
+	bindkey ^[[S insert-last-word
+	bindkey ^[[18~ insert-last-word		# for x
+
+	# F8 : search in history backwards for line beginning as current.
+	bindkey ^[[T history-search-backward
+	bindkey ^[[19~ history-search-backward	# for x
+
+	# F9 : clear screen.
+	# You may be in the middle of a command when you use this.
+	# Does not affect what you are writing at the moment.
+	bindkey ^[[U clear-screen
+	bindkey ^[[20~ clear-screen		# for x
+
+	# F10 : do an 'ls -l'.    (\16 is Ctrl-U on Linux(and Sun?))
+	bindkey -s ^[[V "^Uls -l\n"
+	bindkey -s ^[[21~  "^Uls -l\n"		# for x
+#### May not work in some environments (gnome-terminal, F11 invokes window menu).
+
+	# F11 : display load average and current process status.
+#	bindkey ^[[W load-average
+#	bindkey ^[[23~ load-average		# for x
+#### Disabled! According to users, it is close to F12, which is used for unconditional
+#### completion. In several cases (laptop keyboard) it is common to make a mistake
+#### and press F11 instead of F12, such as in the case
+####        root# cp /etc/passwd /etc/pas<F11>
+#### In this case, the commande changes to
+####        root# cp /etc/passwd /etc/pasuptime<ENTER>
+#### and you get a rubbish file /etc/pasuptime. Annoying!
+
+	# F12 : do a ala-csh completion.
+	bindkey ^[[X complete-word-raw
+	bindkey ^[[24~ complete-word-raw	# for x
+
+	#######################################
+	# Advanced settings
+
+	# Thanks to Carlos Duarte <cgd@teleweb.pt>
+	# Eazy edit of path, type Ctrl-X p
+	bindkey -s '^Xp'        '. `echo $path`^X*)^A^Dset path = ( '
+
+	# Ctrl-X *   Expand glob. example: ls *<^X*>  will expand the line
+	# default behaviour
+
+	# Ctrl-X $   Expand variables. example: $TERM<^X$> with give  vt100
+	# default behaviour
+	breaksw;
+      default:
+	# INSERT : toggles overwrite or insert mode.
+	bindkey ^[[L overwrite-mode 
+	bindkey    ^[[2~  overwrite-mode	# for x
+
+	# DELETE : delete char at cursor position.
+	bindkey ^? delete-char
+	bindkey    ^[[3~  delete-char		# for x
+
+	# HOME : go to the beginning of the line.
+	# already bound to beginnning-of-line, but the keycode thing was different.
+	bindkey ^[[H beginning-of-line
+
+	# END : go to the end of the line.
+	# same as above.
+	bindkey ^[[F end-of-line
+
+	# PAGE UP : search in history backwards for line beginning as current.
+	bindkey ^[[I history-search-backward
+	bindkey ^[[5~ history-search-backward	# for x
+
+	# PAGE DOWN : search in history forwards for line beginning as current.
+	bindkey ^[[G history-search-forward 
+	bindkey ^[[6~ history-search-forward 	# for x
+
+	# ESC-left-arrow : go to beginning of left word.        
+	# The second version is used to fix a strange bug where the binding
+	# stops working after some usage. Did not manage to recreate.
+	bindkey ^[^[[D vi-word-back          # not freebsd specific
+	bindkey	   OD vi-word-back
+
+	# ESC-right-arrow : go to beginning of right word.
+	# The second version is used to fix a strange bug where the binding
+	# stops working after some usage. Did not manage to recreate.
+	bindkey ^[^[[C vi-word-fwd		# also not freebsd specific
+	bindkey	   OC vi-word-fwd
+
+	# F1 : help on command currently typed(if 'ls passwd', help on 'ls').
+	# first: while in console mode, second: while in X
+	bindkey ^[[M run-help
+	bindkey    OP    run-help
+
+	# F2 : set the mark command to cursor position.
+	# first: while in console mode, second: while in X
+	bindkey ^[[N set-mark-command
+	bindkey  OQ     set-mark-command 
+
+	# F3 : move cursor to the marked position.
+	# first: while in console mode, second: while in X
+	bindkey ^[[O exchange-point-and-mark
+	bindkey   OR    exchange-point-and-mark 
+
+	# F4 : --empty--
+	# first: while in console mode, second: while in X
+	bindkey ^[[P undefined-key
+	bindkey   OS   undefined-key
+
+	# F5 : check line for spelling and make changes.
+	# first: while in console mode, second: while in X
+	bindkey ^[[Q spell-line
+	bindkey    [15~   spell-line
+
+	# F6 : check current word for spelling and make changes.
+	bindkey ^[[R spell-word
+	bindkey ^[[17~ spell-word		# for x
+
+	# F7 : insert last item of previous command.
+	bindkey ^[[S insert-last-word
+	bindkey ^[[18~ insert-last-word		# for x
+
+	# F8 : search in history backwards for line beginning as current.
+	bindkey ^[[T history-search-backward
+	bindkey ^[[19~ history-search-backward	# for x
+
+	# F9 : clear screen.
+	# You may be in the middle of a command when you use this.
+	# Does not affect what you are writing at the moment.
+	bindkey ^[[U clear-screen
+	bindkey ^[[20~ clear-screen		# for x
+
+	# F10 : do an 'ls -l'.    (\16 is Ctrl-U on Linux(and Sun?))
+	bindkey -s ^[[V "^Uls -l\n"
+	bindkey -s ^[[21~  "^Uls -l\n"		# for x
+
+	# F11 : display load average and current process status.
+	bindkey ^[[W load-average
+	bindkey ^[[23~ load-average		# for x
+
+	# F12 : do a ala-csh completion.
+	bindkey ^[[X complete-word-raw
+	bindkey ^[[24~ complete-word-raw	# for x
+
+	#######################################
+	# Advanced settings
+
+	# Thanks to Carlos Duarte <cgd@teleweb.pt>
+	# Eazy edit of path, type Ctrl-X p
+	bindkey -s '^Xp'        '. `echo $path`^X*)^A^Dset path = ( '
+
+	# Ctrl-X *   Expand glob. example: ls *<^X*>  will expand the line
+	# default behaviour
+
+	# Ctrl-X $   Expand variables. example: $TERM<^X$> with give  vt100
+	# default behaviour
+	breaksw;
+endsw
+
+

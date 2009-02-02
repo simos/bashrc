@@ -1,0 +1,81 @@
+#!/bin/sh
+#
+# tcshrc_config configuration script by Simos Xenitellis <simos.lists@googlemail.com>.
+# 
+
+SOURCE="/usr/share/tcshrc"
+ETCSKEL="/etc/skel"
+
+USER=n
+SYSTEM=n
+VERBOSE=
+
+usage()
+{
+    echo "usage: $0 [-v|--verbose] [[-u|--user] | [-s|--system]] [-h|--help]" >&2
+    echo "           -v --verbose  be verbose" >&2
+    echo "           -u --user     installation for the current user" >&2
+    echo "           -s --system   system-wide installation (in /etc/skel)" >&2
+    echo "" >&2
+    echo "The system-wide installation populates $ETCSKEL" >&2
+    echo "and new accounts created will have the tcsh" >&2
+    echo "configuration files by default." >&2
+    echo "" >&2
+    exit 0
+}
+
+while [ $# -gt 0 ] ; do
+    case $1 in
+    -u|--user)
+	USER=y
+	;;
+    -s|--system)
+	SYSTEM=y
+	;;
+    -v|--verbose)
+	VERBOSE=--verbose
+	;;
+    -*)
+	usage
+	exit 0
+	;;
+    *)
+	break
+	;;
+    esac
+    shift
+done
+
+if [ "$USER" = "y" -a "$SYSTEM" = "y" ] ; then
+	echo "Please choose either a user or system-wide installation." >&2
+	exit 1
+fi
+
+if [ "$USER" = "y" ] ; then
+	echo -n "Copying files from ${SOURCE} to ${HOME}..." >&2
+	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc 		${HOME}/.tcshrc
+	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.bindkey 	${HOME}/.tcshrc.bindkey
+	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.complete ${HOME}/.tcshrc.complete
+	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.set 	${HOME}/.tcshrc.set
+	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.alias 	${HOME}/.tcshrc.alias
+	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.hosts 	${HOME}/.tcshrc.hosts
+	/bin/cp -u ${VERBOSE} ${SOURCE}/tcshrc.local 	${HOME}/.tcshrc.local
+	echo " done." >&2
+	exit 0
+fi
+
+if [ "$SYSTEM" = "y" ] ; then
+	echo -n "Copying files from ${SOURCE} to ${ETCSKEL}..." >&2
+	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc 		${ETCSKEL}/.tcshrc
+	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.bindkey 	${ETCSKEL}/.tcshrc.bindkey
+	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.complete ${ETCSKEL}/.tcshrc.complete
+	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.set 	${ETCSKEL}/.tcshrc.set
+	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.alias 	${ETCSKEL}/.tcshrc.alias
+	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.hosts 	${ETCSKEL}/.tcshrc.hosts
+	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.local 	${ETCSKEL}/.tcshrc.local
+	echo " done." >&2
+	exit 0
+fi
+
+usage
+exit 0
