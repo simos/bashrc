@@ -6,19 +6,19 @@ Essentially, the Makefile does what the following suggests.
 
 NEW NEW NEW
 
-To install the new .tcshrc.* files, you should first take a backup
-of your original .tcshrc file, if there is any.
-Then, copy the .tcshrc* files from this directory to your home directory.
+To install the new .bashrc.* files, you should first take a backup
+of your original .bashrc file, if there is any.
+Then, copy the .bashrc* files from this directory to your home directory.
 
-A. To make a backup of your existing .tcshrc file
+A. To make a backup of your existing .bashrc file
 
 % cd
-% cp .tcshrc .tcshrc.ORIGINAL
+% cp .bashrc .bashrc.ORIGINAL
 
-B. To install the new .tcshrc* files
+B. To install the new .bashrc* files
 
-% cd tcshrc-0.x/
-% cp .tcshrc* ~/
+% cd bashrc-0.x/
+% cp .bashrc* ~/
 
 Exit the shell and logon again (or open a new window).
 

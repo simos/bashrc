@@ -1,9 +1,9 @@
 #!/bin/sh
 #
-# tcshrc_config configuration script by Simos Xenitellis <simos.lists@googlemail.com>.
+# bashrc_config configuration script by Simos Xenitellis <simos.lists@googlemail.com>.
 # 
 
-SOURCE="/usr/share/tcshrc"
+SOURCE="/usr/share/bashrc"
 ETCSKEL="/etc/skel"
 
 USER=n
@@ -18,7 +18,7 @@ usage()
     echo "           -s --system   system-wide installation (in /etc/skel)" >&2
     echo "" >&2
     echo "The system-wide installation populates $ETCSKEL" >&2
-    echo "and new accounts created will have the tcsh" >&2
+    echo "and new accounts created will have the bash" >&2
     echo "configuration files by default." >&2
     echo "" >&2
     exit 0
@@ -53,26 +53,26 @@ fi
 
 if [ "$USER" = "y" ] ; then
 	echo -n "Copying files from ${SOURCE} to ${HOME}..." >&2
-	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc 		${HOME}/.tcshrc
-	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.bindkey 	${HOME}/.tcshrc.bindkey
-	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.complete ${HOME}/.tcshrc.complete
-	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.set 	${HOME}/.tcshrc.set
-	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.alias 	${HOME}/.tcshrc.alias
-	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.hosts 	${HOME}/.tcshrc.hosts
-	/bin/cp -u ${VERBOSE} ${SOURCE}/tcshrc.local 	${HOME}/.tcshrc.local
+	/bin/cp -f ${VERBOSE} ${SOURCE}/bashrc 		${HOME}/.bashrc
+	/bin/cp -f ${VERBOSE} ${SOURCE}/bashrc.bindkey 	${HOME}/.bashrc.bindkey
+	/bin/cp -f ${VERBOSE} ${SOURCE}/bashrc.complete ${HOME}/.bashrc.complete
+	/bin/cp -f ${VERBOSE} ${SOURCE}/bashrc.set 	${HOME}/.bashrc.set
+	/bin/cp -f ${VERBOSE} ${SOURCE}/bashrc.alias 	${HOME}/.bashrc.alias
+	/bin/cp -f ${VERBOSE} ${SOURCE}/bashrc.hosts 	${HOME}/.bashrc.hosts
+	/bin/cp -u ${VERBOSE} ${SOURCE}/bashrc.local 	${HOME}/.bashrc.local
 	echo " done." >&2
 	exit 0
 fi
 
 if [ "$SYSTEM" = "y" ] ; then
 	echo -n "Copying files from ${SOURCE} to ${ETCSKEL}..." >&2
-	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc 		${ETCSKEL}/.tcshrc
-	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.bindkey 	${ETCSKEL}/.tcshrc.bindkey
-	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.complete ${ETCSKEL}/.tcshrc.complete
-	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.set 	${ETCSKEL}/.tcshrc.set
-	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.alias 	${ETCSKEL}/.tcshrc.alias
-	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.hosts 	${ETCSKEL}/.tcshrc.hosts
-	/bin/cp -f ${VERBOSE} ${SOURCE}/tcshrc.local 	${ETCSKEL}/.tcshrc.local
+	/bin/cp -f ${VERBOSE} ${SOURCE}/bashrc 		${ETCSKEL}/.bashrc
+	/bin/cp -f ${VERBOSE} ${SOURCE}/bashrc.bindkey 	${ETCSKEL}/.bashrc.bindkey
+	/bin/cp -f ${VERBOSE} ${SOURCE}/bashrc.complete ${ETCSKEL}/.bashrc.complete
+	/bin/cp -f ${VERBOSE} ${SOURCE}/bashrc.set 	${ETCSKEL}/.bashrc.set
+	/bin/cp -f ${VERBOSE} ${SOURCE}/bashrc.alias 	${ETCSKEL}/.bashrc.alias
+	/bin/cp -f ${VERBOSE} ${SOURCE}/bashrc.hosts 	${ETCSKEL}/.bashrc.hosts
+	/bin/cp -f ${VERBOSE} ${SOURCE}/bashrc.local 	${ETCSKEL}/.bashrc.local
 	echo " done." >&2
 	exit 0
 fi
