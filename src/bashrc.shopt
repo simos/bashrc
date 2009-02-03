@@ -1,0 +1,19 @@
+#############################################################################
+##
+## .inputrc
+##
+## Author: Simos Xenitellis (simos.lists@googlemail.com)
+##
+
+# You can "cd $HOME"
+set cdable_vars
+
+# Spelling when running cd
+set cdspell
+
+set match-hidden-files off
+set page-completions off
+set completion-query-items 350
+set show-all-if-ambiguous on
+
+# "p": history-search-backward
