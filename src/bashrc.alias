@@ -27,7 +27,7 @@ alias ls='ls --color'
 # Typicaly "more" does not allow you to use the arrow keys/etc for navigation.
 # Thus, we try to use "less", if it exists. Some distros do not put the
 # fileutils package and it is annoying if the alias exists without the app.
-if [ -e `where less` ]; then
+if [ -e `which less` ]; then
 	alias more='less'
 fi
 # To be used as in "cp /etc/inetd.conf /etc/inetd.conf.`today`"
@@ -39,7 +39,7 @@ alias mess='clear ; tail -f /var/log/messages'
 # "vi" was not working even though it was there...
 # Plain "vi" does not support syntax highlighting and other tricks. 
 # We check if vim is installed, then set. Sorry non-vim users.
-if [ -e `where vim`]; then
+if [ -e `which vim`]; then
 	alias vi='vim'
 fi
 # Pressing "x" and enter exits.
@@ -49,17 +49,17 @@ alias x='exit'
 alias ff='find . -name $*'
 # Alias for "." and ".."
 # Shows current directory
-alias .='pwd'
+alias -- .='pwd'
 # Goes back one directory
-alias ..='cd ..'
-alias ../='cd ../'
+alias -- ..='cd ..'
+alias -- ../='cd ../'
 # Goes back two directories
-alias ...='cd ../..'
-alias .../='cd ../../'
+alias -- ...='cd ../..'
+alias -- .../='cd ../../'
 # Goes to previous directory
-alias -='cd -'
+alias -- -='cd -'
 # Goes to the root directory
-alias /='cd /'
+alias -- /='cd /'
 
 # The following are not generic enough. Disabled for the moment.
 #alias vt    	'tar tvf'

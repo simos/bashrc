@@ -48,6 +48,11 @@ export HISTSIZE=2048
 # Privacy issues and it was mentioned that logging makes slow the logout.
 unset HISTFILE
 
+# This provides coloured grep results
+export GREP_OPTIONS='--color=auto'
+
+return
+
 # Watch any(1) other users every 0 seconds from any(2) console, 
 # when logging in/out.(I like this one!)
 # It gives something like "root has logged on tty1 from local."
@@ -120,7 +125,7 @@ set rmstar
 
 # Files that are to be ignored from completion.
 # These are the .o files that GCC produces. Usually you do not touch them.
-set fignore=(.o)
+########set fignore=(.o)
 
 # Various statistics.
 # You can unset it or set it (it is set a bit later).
@@ -132,14 +137,14 @@ set fignore=(.o)
 # with this command. I have used only those that are available
 # on a Linux box without kernel debugging enabled.
 # That is, a stock kernel from a distribution.
-set time=(8 "\
-Time spent in user mode   (CPU seconds) : %Us\
-Time spent in kernel mode (CPU seconds) : %Ss\
-Total time                              : %Es\
-CPU utilisation (percentage)            : %P\
-Times the process was swapped           : %W\
-Times of major page faults              : %F\
-Times of minor page faults              : %R")
+########set time=(8 "\
+########Time spent in user mode   (CPU seconds) : %Us\
+########Time spent in kernel mode (CPU seconds) : %Ss\
+########Total time                              : %Es\
+########CPU utilisation (percentage)            : %P\
+########Times the process was swapped           : %W\
+########Times of major page faults              : %F\
+########Times of minor page faults              : %R")
 
 # page faults are the "memory" pages that had to be brought
 # from the swap area.
@@ -218,4 +223,4 @@ unalias periodic
 set URLS=(http://www.slashdot.org/ http://www.freshmeat.net/ http://www.lwn.net/ http://linuxtoday.com/ http://www.linux.com/ http://www.sourceforge.net/ http://www.redhat.com/ http://www.suse.com/ http://www.debian.org/ http://www.mandrakelinux.com/ http://www.knoppix.org/ http://www.cryptome.org/ http://www.mirror.ac.uk/ http://www.google.com/ http://www.yahoo.com/)
 
 ## Version of this package
-set bashrc_version=1.5.0
+set bashrc_version=0.0.1
