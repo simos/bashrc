@@ -30,7 +30,7 @@
 #   - shows username@currenthost currentdirectory
 #   - can double-click with mouse to select so latter can paste somewhere
 # Source: "UNIX Power Tools" from O'Reilly, note from Tim Cera (timcera@sourceforge.net).
-PS1="\n\e[1m\u\e[m@\e[4m\h\e[m \e[7m\w\e[m\n\$ "
+PS1='\n\e[1m\u\e[m@\e[4m\h\e[m \e[7m$PWD\e[m\n\$ '
 
 # Prompt used when waiting for stufffor 'for' or 'while'...
 PS2="> "
