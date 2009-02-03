@@ -57,9 +57,9 @@ export FIGNORE=".o:~"
 export HISTCONTROL=ignoredups
 
 TIMEFORMAT="\
-Elapsed time   : %3lRs
-User mode      : %3lUs
-System mode    : %3lSs
+Elapsed time   : %3lR
+User mode      : %3lU
+System mode    : %3lS
 CPU percentage : %P"
 
 return

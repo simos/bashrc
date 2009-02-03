@@ -39,7 +39,7 @@ alias mess='clear ; tail -f /var/log/messages'
 # "vi" was not working even though it was there...
 # Plain "vi" does not support syntax highlighting and other tricks. 
 # We check if vim is installed, then set. Sorry non-vim users.
-if [ -e `which vim`]; then
+if [ -e `which vim` ]; then
 	alias vi='vim'
 fi
 # Pressing "x" and enter exits.
@@ -52,14 +52,14 @@ alias ff='find . -name $*'
 alias -- .='pwd'
 # Goes back one directory
 alias -- ..='cd ..'
-alias -- ../='cd ../'
+../() { cd ../; }
 # Goes back two directories
 alias -- ...='cd ../..'
-alias -- .../='cd ../../'
+.../() { cd ../..; }
 # Goes to previous directory
 alias -- -='cd -'
 # Goes to the root directory
-alias -- /='cd /'
+/() { cd /; }
 
 # The following are not generic enough. Disabled for the moment.
 #alias vt    	'tar tvf'
