@@ -51,6 +51,17 @@ unset HISTFILE
 # This provides coloured grep results
 export GREP_OPTIONS='--color=auto'
 
+export FIGNORE=".o:~"
+
+# Maybe leave blank, because users who follow by hand may get confused. I.e. "cd;cd;cd;";
+export HISTCONTROL=ignoredups
+
+TIMEFORMAT="\
+Elapsed time   : %3lRs
+User mode      : %3lUs
+System mode    : %3lSs
+CPU percentage : %P"
+
 return
 
 # Watch any(1) other users every 0 seconds from any(2) console, 
