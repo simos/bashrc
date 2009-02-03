@@ -62,6 +62,9 @@ User mode      : %3lU
 System mode    : %3lS
 CPU percentage : %P"
 
+# Show the exit value of commands when not 0
+trap '__exit_value_bashrc=$?; if [ $__exit_value_bashrc -ne 0 ]; then echo "Exit $__exit_value_bashrc"; fi' ERR
+
 return
 
 # Watch any(1) other users every 0 seconds from any(2) console, 
