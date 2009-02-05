@@ -36,17 +36,18 @@ backup:
 	@test ! -f $(HOME)/.bashrc || cp $(HOME)/.bashrc $(HOME)/.bashrc.ORIGINAL
 
 install:
-	@echo -n "Copying config files to $(HOME)..."
+	@echo "Copying config files to $(HOME)..."
 	@/bin/cp -f src/bashrc          $(HOME)/.bashrc
 	@/bin/cp -f src/bashrc.alias    $(HOME)/.bashrc.alias
 	@/bin/cp -f src/bashrc.bindkey  $(HOME)/.bashrc.bindkey
 	@/bin/cp -f src/bashrc.complete $(HOME)/.bashrc.complete
 	@/bin/cp -f src/bashrc.hosts    $(HOME)/.bashrc.hosts
 	@/bin/cp -f src/bashrc.set      $(HOME)/.bashrc.set
-	@test -e $(HOME)/.bashrc.local || echo "You already have a ~/.bashrc.local. Not overwriting."
-	@test ! -e $(HOME)/.bashrc.local || /bin/cp src/bashrc.local $(HOME)/.bashrc.local
-	@/bin/cp -u src/bashrc.local 	$(HOME)/.bashrc.local
-	@echo " done."
+	@if [ -e $(HOME)/.inputrc ]; then echo "You already have a ~/.inputrc. Not overwriting."; fi
+	@if [ ! -e $(HOME)/.inputrc ]; then /bin/cp -f src/inputrc $(HOME)/.inputrc; fi
+	@if [ -e $(HOME)/.bashrc.local ]; then echo "You already have a ~/.bashrc.local. Not overwriting."; fi
+	@if [ ! -e $(HOME)/.bashrc.local ]; then /bin/cp src/bashrc.local $(HOME)/.bashrc.local; fi
+	@echo "Copying done."
 
 systeminstall:
 	@echo -n "Copying config files to $(SHAREBASHRC)..."
