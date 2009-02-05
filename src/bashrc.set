@@ -12,6 +12,9 @@
 
 ## GENERAL
 
+## Version of this package
+set bashrc_version=0.0.1
+
 # When you press "Ctrl-D", should you exit the shell?
 # If you are used to exit the shell with "Ctrl-D", disable this.
 #set ignoreeof
@@ -63,7 +66,8 @@ System mode    : %3lS
 CPU percentage : %P"
 
 # Show the exit value of commands when not 0
-trap '__exit_value_bashrc=$?; if [ $__exit_value_bashrc -ne 0 ]; then echo "Exit $__exit_value_bashrc"; fi' ERR
+#trap '__exit_value_bashrc=$?; if [ $__exit_value_bashrc -ne 0 ]; then echo "Exit $__exit_value_bashrc"; fi' ERR
+trap 'echo Exit $?' ERR
 
 return
 
@@ -236,5 +240,3 @@ unalias periodic
 
 set URLS=(http://www.slashdot.org/ http://www.freshmeat.net/ http://www.lwn.net/ http://linuxtoday.com/ http://www.linux.com/ http://www.sourceforge.net/ http://www.redhat.com/ http://www.suse.com/ http://www.debian.org/ http://www.mandrakelinux.com/ http://www.knoppix.org/ http://www.cryptome.org/ http://www.mirror.ac.uk/ http://www.google.com/ http://www.yahoo.com/)
 
-## Version of this package
-set bashrc_version=0.0.1
