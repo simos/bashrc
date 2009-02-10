@@ -11,6 +11,10 @@
 #  keys on the keyboard. Now you can eventually use those F*** keys.
 #
 
+bind '"^[n": history-search-forward'
+bind '"^[p": history-search-backward'
+bind '"^[[18~": insert-last-argument'
+
 return
 
 ##########################################################################
