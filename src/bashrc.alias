@@ -23,7 +23,11 @@ alias rd='rmdir -v'
 
 ## Standard aliases - convenience
 # Color syntax
-alias ls='ls --color'
+if [ -x /usr/bin/dircolors ]; then
+    eval "`dircolors -b`"
+    alias ls='ls --color=auto'
+fi
+
 # Typicaly "more" does not allow you to use the arrow keys/etc for navigation.
 # Thus, we try to use "less", if it exists. Some distros do not put the
 # fileutils package and it is annoying if the alias exists without the app.
