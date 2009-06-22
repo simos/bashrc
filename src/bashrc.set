@@ -112,8 +112,7 @@ seticon ${SHORT_HOST}
 # and the command proceeds.  This option is only used by interactive shells.
 shopt -s cdspell
 
-# 
-shopt -s 
+## Add more shopt commands here!
 
 return
 
