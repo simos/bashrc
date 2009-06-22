@@ -70,11 +70,25 @@ CPU percentage : %P"
 #trap '__exit_value_bashrc=$?; if [ $__exit_value_bashrc -ne 0 ]; then echo "Exit $__exit_value_bashrc"; fi' ERR
 trap 'echo Exit $?' ERR
 
+# SHOPT commands
+#
+# If set, minor errors in the spelling of a directory component in a cd command will be corrected.  The errors checked for are trans‐
+# posed  characters,  a missing character, and one character too many.  If a correction is found, the corrected file name is printed,
+# and the command proceeds.  This option is only used by interactive shells.
+shopt -s cdspell
+
+## Add more shopt commands here!
+
+# We end here; there rest have not been ported yet.
+return
+
+########################################################################
+
 ## Addition by Hunter Eidson (eeidson).
 # Execute command after changing directory.
 # This changes the title bar/icon description of the console window.
 export __SHORT_HOST=`echo $HOST | cut -f 1 -d. | tr 'a-z' 'A-Z'`
-case  $TERM in
+case  "DISABLED++${TERM}" in
       dtterm*)	
               alias seticon='echo -n "\033]1;\!*\007"'
               alias sethead='echo -n "\033]2;\!*\007"'
@@ -97,24 +111,13 @@ case  $TERM in
               ;;
       *)
 
-              alias seticon echo -n ""
-              alias sethead echo -n ""
-              unalias cwdcmd
+              alias seticon=echo -n ""
+	      alias sethead=echo -n ""
+	      unalias cwdcmd
 esac
 
 sethead ${SHORT_HOST} - ${PWD}
 seticon ${SHORT_HOST}
-
-# SHOPT commands
-#
-# If set, minor errors in the spelling of a directory component in a cd command will be corrected.  The errors checked for are trans‐
-# posed  characters,  a missing character, and one character too many.  If a correction is found, the corrected file name is printed,
-# and the command proceeds.  This option is only used by interactive shells.
-shopt -s cdspell
-
-## Add more shopt commands here!
-
-return
 
 # Watch any(1) other users every 0 seconds from any(2) console, 
 # when logging in/out.(I like this one!)
