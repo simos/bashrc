@@ -27,6 +27,7 @@ Now read the FAQ file on the new functionality and how to use it properly.
 This project is based on bashrc, http://www.github.com/simos/bashrc/
 Some things may not appear complete; bear with us while we port the functionality.
 
-WE DID NOT PORT ALL THE CONFIGURATION FILES TO BASHRC. THINGS ARE EXPECTED NOT TO WORK.
+WE DID NOT PORT ALL THE CONFIGURATION FILES TO BASHRC. 
+There is work to be done, however the files should be usable in the current state.
 
 For more information, contact Simos Xenitellis <simos.lists@googlemail.com>
